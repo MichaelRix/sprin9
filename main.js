@@ -1,4 +1,4 @@
-_=document.querySelector.bind(document);
+_ = document.querySelector.bind(document);
 
 _.drawer = function() {
   drawer = _('#nav-drawer');
@@ -10,6 +10,8 @@ _.drawer = function() {
 }
 _('h1.site-title').addEventListener('click', _.drawer);
 _('p.drawer-title').addEventListener('click', _.drawer);
+
+// ============================================================
 
 phtext = _('#nav-search input').getAttribute('placeholder');
 placeholder = document.createElement('label');
@@ -26,40 +28,38 @@ _('#nav-search input').addEventListener('blur', function() {
   _('#nav-search').classList.remove('active');
 });
 
-_.relpos = function(element, mouseEventArgs) {
-  return {x: mouseEventArgs.clientX - element.offsetLeft, y: mouseEventArgs.clientY - element.offsetTop};
+// ============================================================
+
+_.relativePos = function(mouseEventArg, element) {
+  return {x: mouseEventArg.clientX - element.offsetLeft,
+    y: mouseEventArg.clientY - element.offsetTop};
 }
 
-_.ripple_init = function(element) {
+_.ripple = function(mouseEventArg, element) {
+  div = element.querySelector('.ripple-sphere');
+  pos = _.relativePos(mouseEventArg, element);
+  div.style.left = `${pos.x}px`;
+  div.style.top = `${pos.y}px`;
+  div.classList.add('effect');
+}
+
+_.rippleBind = function(element) {
   div = document.createElement('div');
-  div.registeredEvent = false;
   div.classList.add('ripple-sphere');
   element.appendChild(div);
+  element.addEventListener('mousedown', (function(e) {
+    _.ripple(e, this);
+  }).bind(element));
+  div.addEventListener('transitionend', (function(e) {
+    if (e.propertyName == 'opacity') {
+      if (!this.classList.contains('effect-end')) {
+        this.classList.add('effect-end');
+      } else {
+        this.classList = ['ripple-sphere'];
+      }
+    }
+  }).bind(div));
 }
 
-_.ripple = function(eventArgs, fromElement) {
-  pos = _.relpos(fromElement, eventArgs);
-  div = fromElement.querySelector('.ripple-sphere');
-  if (div.classList.contains('effect-end')) {
-    div.classList.remove('effect-end');
-  }
-  if (div.registeredEvent) {
-    div.addEventListener('transitionend', (function() {
-      if (this.classList.contains('effect-end')) {
-        this.classList = ['ripple-sphere'];
-      } else {
-        this.classList.add('effect-end');
-      }
-    }).bind(div));
-    div.registeredEvent = true;
-  }
-  div.style.left = pos.x + 'px';
-  div.style.top = pos.y + 'px';
-  div.classList.add('effect');
-};
-
-_.ripple_init(_('#ripple-test'));
-
-_('#ripple-test').onmousedown = function(e) {
-  _.ripple(e, _('#ripple-test'));
-};
+_.rippleBind(_('#ripple-test'));
+_.rippleBind(_('#ripple-test2'));

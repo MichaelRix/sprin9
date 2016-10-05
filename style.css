@@ -201,26 +201,25 @@ header, nav, main, section, footer {
 }
 
 /* ============================================ */
-/* ============================================ */
 
-.ripple-sphere {
+.ripple-effect > .ripple-sphere {
   position: absolute;
-  padding: 0;
-  opacity: 0.9;
   border-radius: 50%;
-  background: #424242;
   pointer-events: none;
+  opacity: 0.9;
+  background: #424242;
 }
 
-.ripple-sphere.effect {
-  margin-left: -8rem;
-  margin-top: -8rem;
-  padding: 8rem;
+.ripple-effect > .ripple-sphere.effect {
+  margin-top: -16rem;
+  margin-left: -16rem;
+  padding: 16rem;
   opacity: 0.5;
-  transition: margin-top .5s ,margin-left .5s, padding .5s, opacity .3s;
+  transition: margin-top .5s, margin-left .5s,
+    padding .5s, opacity .5s;
 }
 
-.ripple-sphere.effect-end {
+.ripple-effect > .ripple-sphere.effect-end {
   opacity: 0;
-  transition: opacity .3s;
+  transition: opacity .2s;
 }
