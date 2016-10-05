@@ -1,0 +1,226 @@
+body {
+  margin: 0;
+  font-family: 'Consolas', 'Lucida Console', monospace, sans-serif;
+  font-size: 16px;
+  z-index: 0;
+}
+
+#main {
+  min-height: 80rem;
+}
+
+input {
+  font-family: 'Consolas', 'Lucida Console', monospace, sans-serif;
+}
+
+header, nav, main, section, footer {
+  display: block;
+  margin: 0;
+}
+
+#nav-bar {
+  width: 100%;
+  height: 4rem;
+}
+
+#nav-drawer {
+  position: absolute;
+  top: 0;
+  width: 20rem;
+  left: -21rem;
+  margin-left: 0;
+  bottom: 0;
+  height: 100%;
+  background: #2196f3;
+  box-shadow: 0 0 0.25rem #2196f3;
+  transition: margin-left .8s;
+  z-index: 1;
+}
+
+#nav-drawer.active {
+  margin-left: 21rem;
+}
+
+#nav-drawer .drawer-title {
+  font-size: 2rem;
+  line-height: 3.25rem;
+  margin: 0;
+  padding-left: 1rem;
+  cursor: pointer;
+}
+
+#nav-drawer .drawer-title::before {
+  content: '< ';
+}
+
+#nav-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+#nav-list li {
+  width: 100%;
+}
+
+#nav-list li a {
+  display: block;
+  padding: 1rem 0;
+  padding-left: 1rem;
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: background .5s
+}
+
+#nav-list li a.last {
+  position:absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#nav-list li a:hover {
+  background: #1e88e5;
+}
+
+#nav-list li a:active {
+  background: #1976d2;
+}
+
+#nav-bar {
+  height: 3.25rem;
+  color: #fff;
+  background: #26c6da;
+  box-shadow: 0 0 0.25rem #26c6da;
+}
+
+#nav-brand {
+  float: left;
+}
+
+#nav-brand * {
+  display: inline;
+}
+
+#nav-brand h1.site-title::before {
+  margin-left: 1rem;
+  content: '> ';
+}
+
+#nav-brand h1.site-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: normal;
+  line-height: 3.25rem;
+}
+
+#nav-brand p.site-desc {
+  font-size: 1.25rem;
+}
+
+#nav-search {
+  float: right;
+  height: 3.25rem;
+}
+
+#nav-search input {
+  margin: 0.875rem 0;
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 12rem;
+  font-size: 1rem;
+  color: transparent;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  transition: color .3s;
+}
+
+#nav-search.active input {
+  color: #fff;
+}
+
+#nav-search input[type='search']::-ms-clear {  display: none; width : 0; height: 0; }
+#nav-search input[type='search']::-ms-reveal {  display: none; width : 0; height: 0; }
+#nav-search input[type='search']::-webkit-search-decoration,
+#nav-search input[type='search']::-webkit-search-cancel-button,
+#nav-search input[type='search']::-webkit-search-results-button,
+#nav-search input[type='search']::-webkit-search-results-decoration { display: none; }
+
+#nav-search .search-placeholder {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12rem;
+  line-height: 3.25rem;
+  pointer-events: none;
+  color: #fff;
+  transition: color .3s;
+}
+
+#nav-search.active .search-placeholder {
+  color: transparent;
+}
+
+#nav-search .search-placeholder::before {
+  position: absolute;
+  top: 2.275rem;
+  left: 0;
+  width: 99%;
+  content: '';
+  border-top: 1px solid transparent;
+  box-sizing: border-box;
+  transition: border-top .3s;
+}
+
+#nav-search.active .search-placeholder::before {
+  border: 1px solid #00838f;
+}
+
+#nav-search .search-placeholder::after {
+  position: absolute;
+  top: 2.275rem;
+  left: 6rem;
+  width: 0%;
+  content: '';
+  border: 1px solid #fff;
+  opacity: 0;
+  box-sizing: border-box;
+  transition: left .3s, width .3s, opacity .5s;
+}
+
+#nav-search.active .search-placeholder::after {
+  left: 0;
+  width: 99%;
+  border-top: 1px solid #fff;
+  opacity: 1;
+}
+
+/* ============================================ */
+/* ============================================ */
+
+.ripple-sphere {
+  position: absolute;
+  padding: 0;
+  opacity: 0.9;
+  border-radius: 50%;
+  background: #424242;
+  pointer-events: none;
+}
+
+.ripple-sphere.effect {
+  margin-left: -8rem;
+  margin-top: -8rem;
+  padding: 8rem;
+  opacity: 0.5;
+  transition: margin-top .5s ,margin-left .5s, padding .5s, opacity .3s;
+}
+
+.ripple-sphere.effect-end {
+  opacity: 0;
+  transition: opacity .3s;
+}
