@@ -273,6 +273,7 @@ footer {
 /* @card */
 
 div.card {
+    display: inline-block;
     background: #fff;
     box-shadow: 0 1px 0.2rem #5c5c5c;
 }
@@ -321,6 +322,11 @@ div.card>.card-content * {
 }
 
 #card1 {
+    margin: 2rem;
+    width: 20rem;
+}
+
+#card2 {
     margin: 2rem;
     width: 20rem;
 }
